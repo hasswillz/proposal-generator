@@ -31,6 +31,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            {{ current_languages[get_locale()] }}
+                        </a>
+                        <div class="dropdown-menu">
+                            {% for code, name in current_languages.items() %}
+                            <a class="dropdown-item {% if get_locale() == code %}active{% endif %}"
+                               href="{{ url_for('main.set_language', language=code) }}">
+                                {{ name }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     {% if current_user.is_authenticated %}

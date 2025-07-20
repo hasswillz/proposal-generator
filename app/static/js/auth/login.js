@@ -1,8 +1,7 @@
-// static/js/auth/login.js
-document.getElementById('login-form')?.addEventListener('submit', async (e) => {
+document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const form = e.target;
-    const submitBtn = form.querySelector('[type="submit"]');
+    const submitBtn = form.querySelector('button[type="submit"]');
     const errorEl = document.getElementById('login-error');
 
     // Clear previous errors
@@ -18,29 +17,39 @@ document.getElementById('login-form')?.addEventListener('submit', async (e) => {
             body: new FormData(form),
             headers: {
                 'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRFToken': form.querySelector('[name="csrf_token"]').value
-            },
-            credentials: 'same-origin'
+                'X-Requested-With': 'XMLHttpRequest'
+            }
         });
 
-        const data = await response.json();
+        const data = await response.json();  // This will now succeed
 
-        if (!response.ok) {
-            throw new Error(data.message || 'Login failed');
+        if (response.ok) {
+            if (data.redirect) {
+                window.location.href = data.redirect;
+            }
+        } else {
+            errorEl.textContent = data.message || 'Login failed';
+            if (data.errors) {
+                // Display form errors if available
+                for (const field in data.errors) {
+                    const input = form.querySelector(`[name="${field}"]`);
+                    if (input) {
+                        input.classList.add('is-invalid');
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'invalid-feedback';
+                        errorDiv.textContent = data.errors[field][0];
+                        input.parentNode.appendChild(errorDiv);
+                    }
+                }
+            }
+            errorEl.style.display = 'block';
         }
-
-        // Successful login
-        window.location.href = data.redirect || '/dashboard';
-
     } catch (error) {
         console.error('Login error:', error);
-        errorEl.textContent = error.message || 'A network error occurred. Please try again.';
+        errorEl.textContent = 'Network error occurred';
         errorEl.style.display = 'block';
     } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Log In';
+        submitBtn.textContent = 'Log In';
     }
 });
-
-

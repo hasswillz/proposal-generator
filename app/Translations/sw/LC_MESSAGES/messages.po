@@ -1,0 +1,14 @@
+# Swahili translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+# app/translations/sw/LC_MESSAGES/messages.po
+msgid "Login"
+msgstr "Ingia"
+
+msgid "Generate Proposal"
+msgstr "Tengeneza Pendekezo"
+
+msgid "A network error occurred. Please try again."
+msgstr "Hitilafu ya mtandao ilitokea. Tafadhali jaribu tena."

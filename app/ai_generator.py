@@ -1,71 +1,73 @@
-# app/ai_generator.py
-# This is a placeholder. You would integrate with an actual AI API here.
+#ai_generator.py
+from openai import OpenAI, AuthenticationError
+from flask import current_app
+from datetime import datetime
 
-def generate_proposal(data: dict) -> str:
-    """
-    Generates AI project proposal content based on the provided data.
-    This is a dummy implementation. Replace with actual AI API calls.
-    """
-    project_name = data.get('project_name', 'Unnamed Project')
-    project_type = data.get('project_type', 'General AI Project')
-    description = data.get('description', 'A project focusing on AI solutions.')
-    budget = data.get('budget', 0)
-    duration = data.get('duration_weeks', 0)
-    writing_style = data.get('writing_style', 'Professional')
-    complexity = data.get('complexity', 'Medium')
-    audience = data.get('audience', 'Stakeholders')
-    contact_email = data.get('contact_email', 'info@example.com')
+def generate_proposal(proposal_data):
+    """Generates a project proposal using OpenAI's latest API (v1.9.5+)"""
+    try:
+        # Initialize the OpenAI client (automatically reads OPENAI_API_KEY from env)
+        client = OpenAI(api_key=current_app.config['OPENAI_API_KEY'])
 
-    # Simulate AI generation
-    generated_content = f"""
-# {project_name} - Project Proposal
+        # Test the key first
+        try:
+            client.models.list()  # Simple API call to verify key
+        except AuthenticationError as auth_err:
+            current_app.logger.error(f"API Key Validation Failed: {str(auth_err)}")
+            raise ValueError("Invalid OpenAI API key configured")
+        # Prepare the prompt
+        prompt = f"""
+        Generate a comprehensive {proposal_data['writing_style']} project proposal for:
 
-## 1. Executive Summary
+        **Project Title:** {proposal_data['project_name']}
+        **Project Type:** {proposal_data['project_type']}
+        **Target Audience:** {proposal_data['audience']} 
+                            +{proposal_data['mobile_number']}
+        **Technical Level:** {proposal_data['complexity']}
 
-This proposal outlines the development of an project focused on **{project_type}**. The project aims to **{description}**. With a proposed budget of **${budget:,.2f}** and an estimated duration of **{duration} weeks**, we are confident in delivering a high-impact solution for **{audience}**.
+        Project Description:
+        {proposal_data['description']}
 
-## 2. Project Goals and Objectives
+        **Budget:** Tsh{proposal_data['budget']:,.2f}
+        **Duration:** {proposal_data['duration_weeks']} weeks
+     
 
-The primary goal is to leverage AI to achieve:
-* Specific Objective 1
-* Specific Objective 2
-* Specific Objective 3
+        **Instructions:**
+        1. Use {proposal_data['writing_style']} writing style
+        2. Include all standard proposal sections
+        3. Format using Markdown
+        """
 
-## 3. Methodology and Approach
+        # Make the API call (updated for OpenAI 1.9.5+)
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo-1106",  # or "gpt-4-turbo"
+            messages=[
+                {"role": "system", "content": "You are a professional proposal writer."},
+                {"role": "user", "content": prompt}
+            ],
+            seed=42,
+            temperature=0.7,
+            max_tokens=2000,
+            stream= False,
+            response_format={"type": "text"}  # Explicitly request text output (new in 1.9.5)
+        )
 
-Our approach will be **{writing_style}** and consider the **{complexity}** complexity. We will utilize cutting-edge AI technologies and methodologies, including:
-* Data collection and preprocessing
-* Model selection and training (e.g., Machine Learning, Deep Learning, NLP)
-* Evaluation and deployment
+        # Extract the content (same as v1.0.0)
+        generated_content = response.choices[0].message.content
 
-## 4. Expected Outcomes
+        # Add metadata
+        proposal_meta = f"""# {proposal_data['project_name']}
 
-Upon completion, we anticipate:
-* Tangible result 1
-* Tangible result 2
-
-## 5. Budget Breakdown
-
-The estimated budget of **${budget:,.2f}** will cover:
-* Personnel costs
-* Software and hardware
-* Data acquisition
-
-## 6. Project Timeline
-
-The project will be executed over **{duration} weeks**, broken down into key phases:
-* **Weeks 1-{int(duration*0.2)}:** Planning & Data Gathering
-* **Weeks {int(duration*0.2)+1}-{int(duration*0.6)}:** Model Development & Training
-* **Weeks {int(duration*0.6)+1}-{int(duration*0.9)}:** Testing & Refinement
-* **Weeks {int(duration*0.9)+1}-{duration}:** Deployment & Documentation
-
-## 7. Conclusion
-
-This project for **{project_name}** represents a significant opportunity to **[briefly state key benefit]**. We look forward to partnering with you to bring this vision to fruition.
+**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M')}  
+**Author:** {proposal_data.get('contact_email', '')}  
+**Project Type:** {proposal_data['project_type']}  
+__Budget:__ Tsh{proposal_data['budget']:,.2f}  
+__Duration:__ {proposal_data['duration_weeks']} weeks  
 
 ---
-
-**Contact Information:**
-For any inquiries, please reach out to {contact_email}.
 """
-    return generated_content
+        return proposal_meta + generated_content
+
+    except Exception as e:
+        current_app.logger.error(f"AI generation failed: {str(e)}")
+        raise Exception("Failed to generate proposal. Please try again later.")

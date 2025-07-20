@@ -24,7 +24,8 @@ body {
 
 .card-header {
     border-radius: 10px 10px 0 0 !important;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #616565 0%, #a7abbc 100%);
+    //background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white; /* Added for better visibility of text on gradient background */
 }
 
@@ -36,23 +37,23 @@ body {
 }
 
 .form-control:focus, .form-select:focus {
-    border-color: #86b7fe;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    border-color: #d6e2f3;
+    box-shadow: 0 0 0 0.25rem rgba(14, 15, 18, 0.25);
 }
 
 /* Button Styles */
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #616565 0%, #a7abbc 100%);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #5a6fd1 0%, #6a3f9e 100%);
+    background: linear-gradient(135deg, #a7abbc 0%, #4e4a53 100%);
     /* Adding a slight lift on hover for buttons */
     transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    box-shadow: 0 2px 4px rgba(244, 219, 219, 0.2);
 }
 
 /* Proposal Content Styles */
@@ -70,7 +71,7 @@ body {
 .proposal-content h3 {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
-    color: #2c3e50;
+    color: #405265;
     border-bottom: 1px solid #eee; /* Subtle underline for headings */
     padding-bottom: 5px;
 }
@@ -87,7 +88,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+     background: linear-gradient(135deg, #a7abbc 0%, #4e4a53 100%);
     color: white;
     box-shadow: 0 4px 8px rgba(0,0,0,.1);
 }
@@ -132,4 +133,14 @@ body {
     .dashboard-card h3 {
         font-size: 2rem;
     }
+}
+
+/* Language switcher dropdown */
+#languageDropdown {
+    min-width: 80px;
+    text-align: center;
+}
+
+.dropdown-menu {
+    min-width: 100px;
 }

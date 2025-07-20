@@ -1,16 +1,17 @@
 # app/main/routes.py
-from flask import render_template, redirect, url_for, flash, request, current_app, send_from_directory, jsonify
+from flask import (render_template, redirect, url_for, flash, request, current_app,
+                   send_from_directory, jsonify, session)
 from flask_login import login_required, current_user
 from datetime import datetime
-import os
+from os import abort, path, makedirs
 from app.forms import ProposalForm # Assuming this is app/forms.py
 from app.main import main_bp
 from app.models import Proposal
 from app import db
+from werkzeug.utils import redirect
+from urllib.parse import urlparse
 from app.ai_generator import generate_proposal # Assuming this module exists
 from app.file_export import ProposalExporter # Assuming this module exists
-
-
 
 @main_bp.route('/', methods=['GET', 'POST'])
 @login_required
@@ -28,6 +29,7 @@ def index():
                 'writing_style': form.writing_style.data,
                 'complexity': form.complexity.data,
                 'audience': form.audience.data,
+                'mobile_number': form.mobile_number.data,
                 'contact_email': form.contact_email.data
             }
 
@@ -146,7 +148,7 @@ def download_proposal(proposal_id, format):
 
         # Ensure the output directory exists
         output_dir = current_app.config.get('UPLOAD_FOLDER', 'temp_downloads')
-        os.makedirs(output_dir, exist_ok=True)
+        makedirs(output_dir, exist_ok=True)
 
         filepath = export_methods[format](
             content=proposal.content,
@@ -156,7 +158,7 @@ def download_proposal(proposal_id, format):
 
         return send_from_directory(
             directory=output_dir, # Use the actual directory where the file is saved
-            path=os.path.basename(filepath), # Only the filename
+            path=path.basename(filepath), # Only the filename
             as_attachment=True
         )
 
@@ -168,8 +170,20 @@ def download_proposal(proposal_id, format):
 @main_bp.route('/favicon.ico')
 def favicon():
     return send_from_directory(
-        os.path.join('static'),
+        path.join('static'),
         'favicon.ico',
         mimetype='image/vnd.microsoft.icon'
     )
 
+
+@main_bp.route('/set_language/<language>')
+def set_language(language):
+    if language not in current_app.config['LANGUAGES']:
+        abort(400, "Invalid language")
+
+    session['language'] = language
+    flash(f"Language set to {current_app.config['LANGUAGES'][language]}", 'success')
+
+    # Secure redirect back
+    next_page = request.referrer or url_for('main.index')
+    return redirect(next_page)

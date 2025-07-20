@@ -134,3 +134,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+$('.language-link').click(function(e) {
+    e.preventDefault();
+    $.get($(this).attr('href'), function() {
+        location.reload();
+    });
+});

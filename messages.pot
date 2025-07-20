@@ -1,0 +1,12 @@
+msgid "Login"
+msgstr "Ingia"
+
+msgid "Generate Proposal"
+msgstr "Tengeneza Pendekezo"
+
+msgid "A network error occurred. Please try again."
+msgstr "Hitilafu ya mtandao ilitokea. Tafadhali jaribu tena."
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+

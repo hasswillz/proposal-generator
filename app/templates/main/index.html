@@ -15,7 +15,7 @@
 
                         <div class="mb-3">
                             {{ form.project_name.label(class="form-label") }}
-                            {{ form.project_name(class="form-control", placeholder="e.g., AI-Powered Customer Support System", required=true) }}
+                            {{ form.project_name(class="form-control", placeholder="e.g., Watermelon Farming Project", required=true) }}
                             <div class="invalid-feedback">Please enter a project name.</div>
                             {% for error in form.project_name.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
@@ -93,8 +93,16 @@
                         </div>
 
                         <div class="mb-4">
+                            {{ form.mobile_number.label(class="form-label") }}
+                            {{ form.mobile_number(class="form-control", placeholder="e.g., 255717000000", required=true) }}
+                            <div class="invalid-feedback">Please enter a valid contact email.</div>
+                            {% for error in form.mobile_number.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-4">
                             {{ form.contact_email.label(class="form-label") }}
-                            {{ form.contact_email(class="form-control", placeholder="e.g., your_email@example.com", required=true) }}
+                            {{ form.contact_email(class="form-control", placeholder="e.g., your_email@good.com", required=true) }}
                             <div class="invalid-feedback">Please enter a valid contact email.</div>
                             {% for error in form.contact_email.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>

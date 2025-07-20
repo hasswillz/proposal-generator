@@ -7,39 +7,25 @@ from app.models import User
 from app import db
 
 
-@auth_bp.route('/login', methods=['GET', 'POST'])
+@auth_bp.route('/login', methods=['GET', 'POST'])  # Handle both GET and POST
 def login():
     if current_user.is_authenticated:
-        if request.is_json:
-            return jsonify({'redirect': url_for('main.dashboard')})
-        return redirect(url_for('main.dashboard'))
+        return redirect(url_for('main.index'))
 
     form = LoginForm()
 
+    # Handle form submission
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember.data)
-
-            if request.is_json:
-                return jsonify({
-                    'status': 'success',
-                    'redirect': url_for('main.dashboard')
-                })
-
-            return redirect(url_for('main.dashboard'))
-
-        # Failed login
-        if request.is_json:
-            return jsonify({
-                'status': 'error',
-                'message': 'Invalid email or password'
-            }), 401
-
+            next_page = request.args.get('next')
+            return redirect(next_page or url_for('main.index'))
         flash('Invalid email or password', 'danger')
 
+    # Handle GET requests (show form)
     return render_template('auth/login.html', form=form)
+
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
