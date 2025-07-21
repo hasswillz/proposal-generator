@@ -14,87 +14,63 @@ document.addEventListener('DOMContentLoaded', function() {
         }, false);
     });
 
-    // Generic form selector to specific ID for proposal form
-    document.getElementById('proposal-form')?.addEventListener('submit', async (e) => {
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('proposal-form');
+
+    if (!form) {
+        console.error('Proposal form not found!');
+        return;
+    }
+
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const form = e.target;
+        console.log('Form submission intercepted');  // Debug log
+
         const submitBtn = form.querySelector('button[type="submit"]');
-
-        // Reset form validation state if previously set
-        form.classList.remove('was-validated');
-        const validationFeedback = form.querySelectorAll('.invalid-feedback');
-        validationFeedback.forEach(el => el.remove()); // Clear dynamic feedback
-
-        // Manually trigger browser's form validation and check validity
-        if (!form.checkValidity()) {
-            form.classList.add('was-validated'); // Re-add for visual feedback
-            // Scroll to the first invalid element if needed
-            const firstInvalid = form.querySelector(':invalid');
-            if (firstInvalid) {
-                firstInvalid.focus();
-                // You might also want to display specific error messages
-                // This is where Flask-WTF validation errors for non-JS requests would usually appear
-            }
-            return; // Stop submission if browser validation fails
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Generating...'; // Add spinner
+        const errorEl = document.getElementById('proposal-error');
 
         try {
+            // Visual feedback
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <span class="spinner-border spinner-border-sm"></span>
+                Generating...
+            `;
+
+            // Debug: Log form data before sending
             const formData = new FormData(form);
+            console.log('Form data:', [...formData.entries()]);
+
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: formData,
                 headers: {
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest', // Helps Flask identify AJAX requests
-                    'X-CSRFToken': form.querySelector('[name="csrf_token"]').value // Include CSRF token
+                    'X-CSRFToken': form.querySelector('[name="csrf_token"]').value
                 }
             });
 
+            console.log('Response status:', response.status);  // Debug log
             const data = await response.json();
+            console.log('Response data:', data);  // Debug log
 
-            if (response.ok) { // Check if the response status is 2xx
-                if (data.redirect) {
-                    window.location.href = data.redirect;
-                } else {
-                    // Fallback or handle unexpected success without redirect
-                    console.log("Proposal generated, but no redirect specified.", data);
-                    alert("Proposal generated successfully!");
-                    // You might want to refresh the dashboard or view the new proposal here
-                    window.location.reload(); // Simple reload for demonstration
-                }
-            } else {
-                // Handle errors from the server (e.g., validation_error, server error)
-                if (data.status === 'validation_error' && data.errors) {
-                    // Display validation errors under specific fields
-                    for (const fieldName in data.errors) {
-                        const fieldElement = form.querySelector(`[name="${fieldName}"]`);
-                        if (fieldElement) {
-                            fieldElement.classList.add('is-invalid');
-                            const errorDiv = document.createElement('div');
-                            errorDiv.className = 'invalid-feedback d-block';
-                            errorDiv.textContent = data.errors[fieldName].join(', ');
-                            fieldElement.parentNode.appendChild(errorDiv);
-                        }
-                    }
-                    alert('Please correct the form errors.');
-                } else {
-                    // General error message
-                    alert(data.message || 'Error generating proposal. Please try again.');
-                }
+            if (!response.ok) throw new Error(data.message || 'Server error');
+
+            if (data.redirect) {
+                console.log('Redirecting to:', data.redirect);  // Debug log
+                window.location.href = data.redirect;
             }
 
         } catch (error) {
-            console.error('Proposal generation fetch error:', error);
-            alert('A network error occurred. Please check your connection and try again.');
+            console.error('Generation failed:', error);
+            errorEl.textContent = error.message || 'Proposal generation failed';
+            errorEl.classList.remove('d-none');
         } finally {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Generate Proposal';
+            submitBtn.textContent = 'Generate Proposal';
         }
     });
-
+});
     // Budget formatting
     const budgetField = document.getElementById('budget');
     if (budgetField) {

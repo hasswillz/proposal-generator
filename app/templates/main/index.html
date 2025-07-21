@@ -10,7 +10,7 @@
         <div class="col-lg-8">
             <div class="card form-section">
                 <div class="card-body">
-                    <form id="proposal-form" method="POST" action="{{ url_for('main.index') }}" class="needs-validation" novalidate>
+                    <form id="proposal-form" method="POST" action="{{ url_for('main.index')}}" >
                         {{ form.hidden_tag() }}
 
                         <div class="mb-3">
@@ -108,9 +108,9 @@
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
                         </div>
-
-                        <button type="submit" class="btn btn-primary w-100">Generate Proposal</button>
+                        <button type="submit" class="btn btn-primary ">Generate Proposal</button>
                     </form>
+                    <div id="proposal-error" class="alert alert-danger d-none"></div>
                 </div>
             </div>
         </div>

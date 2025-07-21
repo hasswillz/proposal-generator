@@ -13,13 +13,13 @@ from urllib.parse import urlparse
 from app.ai_generator import generate_proposal # Assuming this module exists
 from app.file_export import ProposalExporter # Assuming this module exists
 
+
 @main_bp.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
     form = ProposalForm()
-    if form.validate_on_submit(): # Corrected to use form.validate_on_submit()
+    if form.validate_on_submit():
         try:
-            # Convert form data to dict, excluding CSRF and submit
             proposal_data = {
                 'project_name': form.project_name.data,
                 'project_type': form.project_type.data,
@@ -45,56 +45,26 @@ def index():
             )
 
             db.session.add(proposal)
-            try:
-                db.session.commit()
-            except Exception as db_error:
-                db.session.rollback()
-                current_app.logger.error(f"Database commit failed: {str(db_error)}")
-                if request.is_json:
-                    return jsonify({
-                        "status": "error",
-                        "message": "Database save failed",
-                        "debug": str(db_error)
-                    }), 500
-                flash('Database save failed. Please try again.', 'danger')
-                return redirect(url_for('main.index'))
+            db.session.commit()
 
-
-            if request.is_json:
+            if request.is_json:  # AJAX request
                 return jsonify({
                     'status': 'success',
-                    'redirect': url_for('main.view_proposal', proposal_id=proposal.id)
-                })
-            flash('Proposal generated successfully!', 'success')
-            return redirect(url_for('main.view_proposal', proposal_id=proposal.id))
-
-        except ValueError as e:
-            current_app.logger.error(f"Invalid data for proposal: {str(e)}")
-            if request.is_json:
-                return jsonify({
-                    'status': 'error',
-                    'message': f'Invalid data: {str(e)}'
-                }), 400
-            flash(f'Invalid data provided: {str(e)}', 'danger')
+                    'redirect': url_for('main.dashboard', _external=True)
+                }), 200
+            else:  # Regular form submission
+                return redirect(url_for('main.dashboard'))
 
         except Exception as e:
-            current_app.logger.error(f"Proposal generation error: {str(e)}")
+            db.session.rollback()
             if request.is_json:
                 return jsonify({
                     'status': 'error',
-                    'message': 'Server error during proposal generation'
+                    'message': str(e)
                 }), 500
-            flash('An unexpected error occurred during proposal generation.', 'danger')
+            flash(f'Error: {str(e)}', 'danger')
 
-    # If GET request or form validation failed for a POST request (and not JSON)
-    if request.method == 'GET' or (request.method == 'POST' and not request.is_json):
-        return render_template('main/index.html', form=form)
-    elif request.method == 'POST' and request.is_json and not form.validate_on_submit():
-        # Handle form validation errors for JSON requests
-        return jsonify({
-            'status': 'validation_error',
-            'errors': form.errors
-        }), 400
+    return render_template('main/index.html', form=form)
 
 
 @main_bp.route('/about') # Removed POST method if it's just an informational page
