@@ -1,9 +1,10 @@
 # app/auth/routes.py
 from flask import render_template, redirect, url_for, flash, request, jsonify
-from flask_login import login_user, logout_user, current_user
-from app.auth.forms import LoginForm, RegistrationForm
+from flask_login import login_user, logout_user, current_user, login_required
+from app.auth.forms import LoginForm, RegistrationForm, ChangePasswordForm
 from app.auth.forms import ResetPasswordRequestForm, ResetPasswordForm
 from app.auth.email import send_password_reset_email
+from flask_babel import lazy_gettext as _
 from app.auth import auth_bp
 from app.models import User
 from app import db
@@ -59,7 +60,6 @@ def register():
 @auth_bp.route('/logout')
 def logout():
     logout_user()
-    flash('You have been logged out.', 'info')
     return redirect(url_for('main.dashboard'))
 
 @auth_bp.route('/reset_password/<token>', methods=['GET', 'POST'])
@@ -92,3 +92,23 @@ def reset_password_request():
         flash('Check your email for the instructions to reset your password', 'info')
         return redirect(url_for('auth.login'))
     return render_template('auth/reset_password_request.html', form=form)
+
+
+@auth_bp.route('/change_password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        # Verify current password
+        if not current_user.check_password(form.current_password.data):
+            flash(_('Current password is incorrect'), 'danger')
+            return redirect(url_for('auth.change_password'))
+
+        # Set new password
+        current_user.set_password(form.new_password.data)
+        db.session.commit()
+
+        flash(_('Your password has been updated successfully!'), 'success')
+        return redirect(url_for('main.dashboard'))
+
+    return render_template('auth/change_password.html', form=form)

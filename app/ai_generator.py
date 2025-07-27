@@ -1,4 +1,5 @@
 #ai_generator.py
+from flask_babel import get_locale
 from openai import OpenAI, AuthenticationError
 from flask import current_app
 from datetime import datetime
@@ -16,6 +17,14 @@ def generate_proposal(proposal_data):
         except AuthenticationError as auth_err:
             current_app.logger.error(f"API Key Validation Failed: {str(auth_err)}")
             raise ValueError("Invalid OpenAI API key configured")
+
+        # Determine the language based on the current session/locale
+        current_language = get_locale()
+        if current_language == "en":
+            language_instruction = "Generate the proposal in English."  # Default
+        else:
+            language_instruction = "Generate the proposal in Swahili."
+
         # Prepare the prompt
         prompt = f"""
         Generate a comprehensive {proposal_data['writing_style']} project proposal for:
@@ -34,9 +43,19 @@ def generate_proposal(proposal_data):
      
 
         **Instructions:**
-        1. Use {proposal_data['writing_style']} writing style
-        2. Include all standard proposal sections
-        3. Format using Markdown
+        1.{language_instruction}
+        2. Use {proposal_data['writing_style']} writing style
+        3. Include all standard proposal sections such as
+             -Project Description
+             -Objectives
+             -Methodology
+             - Project Activities
+             -Budget Breakdown
+             -Timeline
+             -Expected Outcomes and expectations
+             - Sustainability 
+             -Conclusion
+        4. Format using Markdown (Arial font, Arial, font heading 12,  body 11 )
         """
 
         # Make the API call (updated for OpenAI 1.9.5+)

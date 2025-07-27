@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-27 20:32+0300\n"
+"POT-Creation-Date: 2025-07-28 01:28+0300\n"
 "PO-Revision-Date: 2025-07-27 20:21+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sw\n"
@@ -18,130 +18,206 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: app/forms.py:10
+#: app/forms.py:11
 msgid "Project Name"
 msgstr "Jina la Mradi"
 
-#: app/forms.py:11
+#: app/forms.py:12
 #, fuzzy
 msgid "Project Type"
-msgstr "Aina ya Mradi"
+msgstr "Aina ya Mradi."
 
-#: app/forms.py:12
+#: app/forms.py:13
 msgid "Agriculture"
 msgstr "Kilimo"
 
-#: app/forms.py:13
+#: app/forms.py:14
 msgid "Livestock"
 msgstr "Ufugaji"
 
-#: app/forms.py:14
+#: app/forms.py:15
 msgid "Fishing"
 msgstr "Uvuvi"
 
-#: app/forms.py:15
+#: app/forms.py:16
 msgid "Transportation"
 msgstr "Usafirishaji"
 
-#: app/forms.py:16
+#: app/forms.py:17
 msgid "Food and Beverage"
 msgstr "Chakula na Vinywaji"
 
-#: app/forms.py:17
+#: app/forms.py:18
 msgid "Culture and Arts"
 msgstr "Sanaa na Utamaduni"
 
-#: app/forms.py:18
+#: app/forms.py:19
 msgid "Other Business"
 msgstr "Biashara"
 
-#: app/forms.py:20
+#: app/forms.py:21
 msgid "Brief Description"
 msgstr "Maelezo Mafupi"
 
-#: app/forms.py:21
+#: app/forms.py:22
 msgid "Estimated Budget (Tsh)"
 msgstr "Makadirio ya Bajeti (TSh)"
 
-#: app/forms.py:22
+#: app/forms.py:23
 msgid "Estimated Duration (weeks)"
 msgstr "Muda wa Mradi (Wiki)"
 
-#: app/forms.py:23
+#: app/forms.py:24
 msgid "Writing Style"
 msgstr "Aina ya Aundishi"
 
-#: app/forms.py:24
+#: app/forms.py:25
 msgid "Professional"
 msgstr "Kitaalam"
 
-#: app/forms.py:25
+#: app/forms.py:26
 msgid "Concise"
 msgstr "Fupi"
 
-#: app/forms.py:26
+#: app/forms.py:27
 msgid "Detailed"
 msgstr "Kina"
 
-#: app/forms.py:27
+#: app/forms.py:28
 msgid "Creative"
 msgstr "Bunifu"
 
-#: app/forms.py:29
+#: app/forms.py:30
 msgid "Complexity Level"
 msgstr "Kiwango"
 
-#: app/forms.py:30
+#: app/forms.py:31
 msgid "Low"
 msgstr "Chini"
 
-#: app/forms.py:31
+#: app/forms.py:32
 msgid "Medium"
 msgstr "Kati"
 
-#: app/forms.py:32
+#: app/forms.py:33
 msgid "High"
 msgstr "Juu"
 
-#: app/forms.py:34
+#: app/forms.py:35
 msgid "Target Audience"
 msgstr "Jamii Nufaika"
 
-#: app/forms.py:35
+#: app/forms.py:36
 msgid "Contact Email for Proposal"
 msgstr "Baruapepe Binafsi"
 
-#: app/forms.py:36
+#: app/forms.py:37
 msgid "Contact Mobile Number "
 msgstr "Namba ya Simu"
 
-#: app/forms.py:37 app/templates/main/form.html:37
+#: app/forms.py:38 app/templates/main/form.html:37
 #: app/templates/main/index.html:111
 msgid "Generate Proposal"
 msgstr "Tengeneza Pendekezo"
 
-#: app/auth/forms.py:51
+#: app/auth/forms.py:9 app/auth/forms.py:25 app/auth/forms.py:51
 msgid "Email"
 msgstr "Baruapepe"
+
+#: app/auth/forms.py:11
+#, fuzzy
+msgid "Please enter a valid email address"
+msgstr "Tafadhali weka Baruapepe sahihi "
+
+#: app/auth/forms.py:13 app/auth/forms.py:29 app/auth/forms.py:55
+msgid "Password"
+msgstr "Nywila"
+
+#: app/auth/forms.py:15 app/auth/forms.py:63
+#: app/templates/auth/register.html:52
+msgid "Password must be at least 8 characters"
+msgstr "Nywila lazima iwe na herufi 8"
+
+#: app/auth/forms.py:17
+msgid "Remember Me"
+msgstr "Nikumbuke"
+
+#: app/auth/forms.py:21
+msgid "Username"
+msgstr "Jina la Mtumiaji"
+
+#: app/auth/forms.py:33
+#, fuzzy
+msgid "Confirm Password"
+msgstr "Thibitisha Nywila Mpya"
+
+#: app/auth/forms.py:35 app/auth/forms.py:67
+#: app/templates/auth/register.html:61
+msgid "Passwords must match"
+msgstr "Nywila hazifanani"
+
+#: app/auth/forms.py:37 app/templates/auth/register.html:21
+#: app/templates/auth/register.html:64 app/templates/main/base.html:75
+msgid "Register"
+msgstr "Sajili"
+
+#: app/auth/forms.py:42
+msgid "Username already taken. Please choose a different one."
+msgstr "Jina la mtumiaji limeshatumika. Tafadhali jaribu lingine "
+
+#: app/auth/forms.py:47
+msgid "Email already registered. Please use a different one."
+msgstr "Baruapepe imeshatumika, Tafadhali tumia nyingine"
 
 #: app/auth/forms.py:52
 msgid "Request Password Reset"
 msgstr "Omba Kubadili Nywila"
 
-#: app/auth/forms.py:55
-msgid "Password"
-msgstr "Nywila"
-
 #: app/auth/forms.py:56
 msgid "Repeat Password"
 msgstr "Rudia Password"
 
-#: app/auth/forms.py:57 app/templates/main/base.html:64
+#: app/auth/forms.py:57 app/templates/auth/reset_password_request.html:9
 msgid "Reset Password"
 msgstr "Badili Nywila"
 
+#: app/auth/forms.py:60
+msgid "Current Password"
+msgstr "Nywila ya Sasa"
+
+#: app/auth/forms.py:61
+msgid "New Password"
+msgstr "Nywila Mpya"
+
+#: app/auth/forms.py:65
+msgid "Confirm New Password"
+msgstr "Thibitisha Nywila Mpya"
+
+#: app/auth/forms.py:69 app/templates/auth/change_password.html:3
+#: app/templates/auth/change_password.html:11
+#: app/templates/auth/change_password.html:45 app/templates/main/base.html:65
+msgid "Change Password"
+msgstr "Badili Nywila"
+
+#: app/auth/routes.py:104
+msgid "Current password is incorrect"
+msgstr "Nywila ya sasa si sahihi"
+
+#: app/auth/routes.py:111
+msgid "Your password has been updated successfully!"
+msgstr "Nywila yako imebadilishwa kwa mafanikio!"
+
+#: app/templates/auth/change_password.html:29
+msgid "Password must be at least 8 characters long"
+msgstr "Nywila lazima iwe na herufi angalau 8"
+
+#: app/templates/auth/change_password.html:48
+#, fuzzy
+msgid "Cancel"
+msgstr "Kata"
+
 #: app/templates/auth/login.html:12 app/templates/auth/login.html:42
-#: app/templates/main/base.html:69
+#: app/templates/main/base.html:72
 msgid "Login"
 msgstr "Ingia"
 
@@ -161,19 +237,6 @@ msgstr "Sajili Hapa"
 msgid "Forgot Password?"
 msgstr "Umesahau Nywila"
 
-#: app/templates/auth/register.html:21 app/templates/auth/register.html:64
-#: app/templates/main/base.html:72
-msgid "Register"
-msgstr "Sajili"
-
-#: app/templates/auth/register.html:52
-msgid "Password must be at least 8 characters"
-msgstr "Nywila lazima iwe na herufi 8"
-
-#: app/templates/auth/register.html:61
-msgid "Passwords must match"
-msgstr "Nywila hazifanani"
-
 #: app/templates/auth/register.html:67
 msgid "Already have an account?"
 msgstr "Je una akaunti"
@@ -188,7 +251,7 @@ msgstr "Badili Nywila"
 
 #: app/templates/errors/500.html:12
 msgid "Internal Server Error"
-msgstr "Tatizo kwenye Seva"
+msgstr "Kuna tatizo kwenye Seva"
 
 #: app/templates/errors/500.html:13
 msgid "Something went wrong on our end. We're working to fix it."
@@ -218,9 +281,13 @@ msgstr "Kuhusu Sisi"
 msgid "Logout"
 msgstr "Toka"
 
-#: app/templates/main/base.html:99
+#: app/templates/main/base.html:102
 msgid "AI Project Proposal Generator. All rights reserved"
 msgstr ""
+
+#: app/templates/main/dashboard.html:8
+msgid "Your Dashboard"
+msgstr "Dashbodi Yako"
 
 #: app/templates/main/dashboard.html:14
 msgid "Total Proposals Generated"
@@ -244,7 +311,7 @@ msgstr "Tengeneza Pendekezo la Mradi kwa AM"
 
 #: app/templates/main/index.html:28
 msgid "Please select a project type"
-msgstr "Tafadhali Chagua aina ya Mradi"
+msgstr "Tafadhali Chagua Aina ya Mradi"
 
 #: app/templates/main/index.html:37
 msgid "Please provide a description (at least 20 characters)"
@@ -264,7 +331,7 @@ msgstr "Tafadhali weka muda kwa wiki"
 
 #: app/templates/main/index.html:71
 msgid "Please select a writing style."
-msgstr "Tafadhali Weka aina ya Uandishi"
+msgstr "Tafadhali chagua aina ya Uandishi"
 
 #: app/templates/main/index.html:80
 msgid "Please select a complexity level."

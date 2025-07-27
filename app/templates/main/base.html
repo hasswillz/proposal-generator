@@ -61,7 +61,10 @@
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">{{_("Logout")}}</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ url_for('auth.reset_password_request') }}">{{_("Reset Password")}}</a></li>
+                           <li><a class="dropdown-item" href="{{ url_for('auth.change_password') }}">
+                               <i class="bi bi-key"></i> {{ _('Change Password') }}
+                               </a>
+                           </li>
                         </ul>
                     </li>
                     {% else %}

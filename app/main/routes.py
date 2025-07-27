@@ -149,7 +149,6 @@ def favicon():
 
 @main_bp.route('/set_language/<language>')
 def set_language(language):
-    print(f"--- DEBUG: Entering set_language for language: {language} ---")
     if language in current_app.config['LANGUAGES']:
         session['language'] = language
 
