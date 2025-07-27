@@ -117,3 +117,10 @@ $('.language-link').click(function(e) {
         location.reload();
     });
 });
+
+ document.querySelectorAll('.language-switcher a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = this.href + '&_=' + new Date().getTime();
+    });
+});

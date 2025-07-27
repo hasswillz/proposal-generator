@@ -7,18 +7,20 @@
         <div class="col-md-10 mx-auto">
             <div class="card shadow">
                 <div class="card-header bg-success text-white">
-                    <h2>Generated Proposal</h2>
+                    <h2>{{_("Generated Proposal")}}</h2>
                 </div>
                 <div class="card-body">
                     <div class="proposal-content">
-                        {{ proposal|safe }}
+                        {% filter markdown %}
+                         {{ proposal|safe }}
+                        {% endfilter %}
                     </div>
                     <div class="mt-4">
                         <a href="{{ url_for('main.index') }}" class="btn btn-primary">
-                            Generate Another Proposal
+                           {{_("Generate Another Proposal")}}
                         </a>
                         <button onclick="window.print()" class="btn btn-secondary ms-2">
-                            Print Proposal
+                            {{_("Print Proposal")}}
                         </button>
                     </div>
                 </div>

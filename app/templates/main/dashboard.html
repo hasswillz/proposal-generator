@@ -1,7 +1,7 @@
 <!--app/templates/main/dashboard.html-->
 {% extends "main/base.html" %}
 
-{% block title %}Dashboard - AI Proposal Generator{% endblock %}
+{% block title %}Dashboard - AI Project Proposal Generator{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
@@ -11,7 +11,7 @@
         <div class="col-md-4">
             <div class="card bg-primary text-white dashboard-card">
                 <div class="card-body">
-                    <h5 class="card-title">Total Proposals Generated</h5>
+                    <h5 class="card-title">{{_("Total Proposals Generated")}}</h5>
                     <h3 class="card-text">{{ proposals|length }}</h3>
                 </div>
             </div>
@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h4 class="text-white mb-0">Your Recent Proposals</h4>
+            <h4 class="text-white mb-0">{{_("Your Recent Proposals")}}</h4>
         </div>
         <div class="card-body">
             {% if proposals %}
@@ -48,12 +48,11 @@
                                 </a>
                                 <div class="dropdown d-inline-block">
                                     <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="downloadDropdown{{ proposal.id }}" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-download"></i> Download
+                                        <i class="bi bi-download"></i> {{_("Download")}}
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="downloadDropdown{{ proposal.id }}">
                                         <li><a class="dropdown-item" href="{{ url_for('main.download_proposal', proposal_id=proposal.id, format='pdf') }}">PDF</a></li>
                                         <li><a class="dropdown-item" href="{{ url_for('main.download_proposal', proposal_id=proposal.id, format='docx') }}">DOCX</a></li>
-                                        <li><a class="dropdown-item" href="{{ url_for('main.download_proposal', proposal_id=proposal.id, format='md') }}">Markdown</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -63,7 +62,7 @@
                 </table>
             </div>
             {% else %}
-            <p class="text-center">You haven't generated any proposals yet. <a href="{{ url_for('main.index') }}">Start generating one now!</a></p>
+            <p class="text-center">You haven't generated any proposals yet. <a href="{{ url_for('main.index') }}">{{_("Start generating one now!")}}</a></p>
             {% endif %}
         </div>
     </div>

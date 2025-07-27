@@ -1,11 +1,11 @@
 <!--app/templates/main/index.html-->
 {% extends "main/base.html" %}
 
-{% block title %}Generate Proposal - AI Proposal Generator{% endblock %}
+{% block title %}Generate Proposal - AI Project Proposal Generator{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <h2 class="mb-4 text-center">Generate a New AI Project Proposal</h2>
+    <h2 class="mb-4 text-center">{{_("Generate a New AI Project Proposal")}}</h2>
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card form-section">
@@ -25,7 +25,7 @@
                         <div class="mb-3">
                             {{ form.project_type.label(class="form-label") }}
                             {{ form.project_type(class="form-select", required=true) }}
-                            <div class="invalid-feedback">Please select a project type.</div>
+                            <div class="invalid-feedback">{{_("Please select a project type")}}.</div>
                             {% for error in form.project_type.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
@@ -34,7 +34,7 @@
                         <div class="mb-3">
                             {{ form.description.label(class="form-label") }}
                             {{ form.description(class="form-control", rows="5", placeholder="Provide a detailed description of your project.", required=true) }}
-                            <div class="invalid-feedback">Please provide a description (at least 20 characters).</div>
+                            <div class="invalid-feedback">{{_("Please provide a description (at least 20 characters)")}}.</div>
                             {% for error in form.description.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
@@ -46,7 +46,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text">Tsh</span>
                                     {{ form.budget(class="form-control", placeholder="e.g., 50000.00", type="number", step="0.01", required=true) }}
-                                    <div class="invalid-feedback">Please enter a valid budget.</div>
+                                    <div class="invalid-feedback">{{_("Please enter a valid budget")}}.</div>
                                 </div>
                                 {% for error in form.budget.errors %}
                                     <div class="invalid-feedback d-block">{{ error }}</div>
@@ -56,8 +56,8 @@
                                 {{ form.duration_weeks.label(class="form-label") }}
                                 <div class="input-group">
                                     {{ form.duration_weeks(class="form-control", placeholder="e.g., 12", type="number", required=true) }}
-                                    <span class="input-group-text">weeks</span>
-                                    <div class="invalid-feedback">Please enter a valid duration in weeks.</div>
+                                    <span class="input-group-text">{{_("weeks")}}</span>
+                                    <div class="invalid-feedback">{{_("Please enter a valid duration in weeks.")}}</div>
                                 </div>
                                 {% for error in form.duration_weeks.errors %}
                                     <div class="invalid-feedback d-block">{{ error }}</div>
@@ -68,7 +68,7 @@
                         <div class="mb-3">
                             {{ form.writing_style.label(class="form-label") }}
                             {{ form.writing_style(class="form-select", required=true) }}
-                            <div class="invalid-feedback">Please select a writing style.</div>
+                            <div class="invalid-feedback">{{_("Please select a writing style.")}}</div>
                             {% for error in form.writing_style.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
@@ -77,7 +77,7 @@
                         <div class="mb-3">
                             {{ form.complexity.label(class="form-label") }}
                             {{ form.complexity(class="form-select", required=true) }}
-                            <div class="invalid-feedback">Please select a complexity level.</div>
+                            <div class="invalid-feedback">{{_("Please select a complexity level.")}}</div>
                             {% for error in form.complexity.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
@@ -86,7 +86,7 @@
                         <div class="mb-3">
                             {{ form.audience.label(class="form-label") }}
                             {{ form.audience(class="form-control", placeholder="e.g., Council , Ward, Village", required=true) }}
-                            <div class="invalid-feedback">Please specify the target audience.</div>
+                            <div class="invalid-feedback">{{_("Please specify the target audience.")}}</div>
                             {% for error in form.audience.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
@@ -95,7 +95,7 @@
                         <div class="mb-4">
                             {{ form.mobile_number.label(class="form-label") }}
                             {{ form.mobile_number(class="form-control", placeholder="e.g., 255717000000", required=true) }}
-                            <div class="invalid-feedback">Please enter a valid contact email.</div>
+                            <div class="invalid-feedback">Please enter a valid phone number.</div>
                             {% for error in form.mobile_number.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
@@ -103,12 +103,12 @@
                         <div class="mb-4">
                             {{ form.contact_email.label(class="form-label") }}
                             {{ form.contact_email(class="form-control", placeholder="e.g., your_email@good.com", required=true) }}
-                            <div class="invalid-feedback">Please enter a valid contact email.</div>
+                            <div class="invalid-feedback">{{_("Please enter a valid contact email.")}}</div>
                             {% for error in form.contact_email.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
                         </div>
-                        <button type="submit" class="btn btn-primary ">Generate Proposal</button>
+                        <button type="submit" class="btn btn-primary ">{{_("Generate Proposal") }}</button>
                     </form>
                     <div id="proposal-error" class="alert alert-danger d-none"></div>
                 </div>

@@ -4,6 +4,7 @@ from flask import current_app
 from datetime import datetime
 
 def generate_proposal(proposal_data):
+
     """Generates a project proposal using OpenAI's latest API (v1.9.5+)"""
     try:
         # Initialize the OpenAI client (automatically reads OPENAI_API_KEY from env)

@@ -1,6 +1,7 @@
 # app/main/routes.py
 from flask import (render_template, redirect, url_for, flash, request, current_app,
-                   send_from_directory, jsonify, session)
+                   send_from_directory, jsonify, session, make_response)
+from flask_babel import refresh, get_locale
 from flask_login import login_required, current_user
 from datetime import datetime
 from os import abort, path, makedirs
@@ -9,7 +10,6 @@ from app.main import main_bp
 from app.models import Proposal
 from app import db
 from werkzeug.utils import redirect
-from urllib.parse import urlparse
 from app.ai_generator import generate_proposal # Assuming this module exists
 from app.file_export import ProposalExporter # Assuming this module exists
 
@@ -19,6 +19,7 @@ from app.file_export import ProposalExporter # Assuming this module exists
 def index():
     form = ProposalForm()
     if form.validate_on_submit():
+
         try:
             proposal_data = {
                 'project_name': form.project_name.data,
@@ -148,12 +149,13 @@ def favicon():
 
 @main_bp.route('/set_language/<language>')
 def set_language(language):
-    if language not in current_app.config['LANGUAGES']:
-        abort(400, "Invalid language")
+    print(f"--- DEBUG: Entering set_language for language: {language} ---")
+    if language in current_app.config['LANGUAGES']:
+        session['language'] = language
 
-    session['language'] = language
-    flash(f"Language set to {current_app.config['LANGUAGES'][language]}", 'success')
+        response = make_response(redirect(request.args.get('next') or url_for('main.index')))
+        response.set_cookie('user_lang', language, max_age=60*60*24*30) # Set cookie for 30 days
+        return response
+    else:
+        return redirect(request.args.get('next') or url_for('main.index'))
 
-    # Secure redirect back
-    next_page = request.referrer or url_for('main.index')
-    return redirect(next_page)

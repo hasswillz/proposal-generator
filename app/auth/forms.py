@@ -3,6 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from app.models import User
+from flask_babel import lazy_gettext as _
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[
@@ -44,3 +45,13 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('Email already registered. Please use a different one.')
+
+#Password reset na forgot
+class ResetPasswordRequestForm(FlaskForm):
+    email = StringField(_('Email'), validators=[DataRequired(), Email()])
+    submit = SubmitField(_('Request Password Reset'))
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField(_('Password'), validators=[DataRequired()])
+    password2 = PasswordField(_('Repeat Password'), validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField(_('Reset Password'))

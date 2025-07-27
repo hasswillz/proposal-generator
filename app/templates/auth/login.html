@@ -1,7 +1,7 @@
 <!--app/templates/auth/login.html -->
 {% extends "main/base.html" %}
 
-{% block title %}Login - AI Proposal Generator{% endblock %}
+{% block title %}Login - AI  Project Proposal Generator{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
@@ -9,7 +9,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="text-white mb-0">Login</h4>
+                    <h4 class="text-white mb-0">{{ _("Login") }}</h4>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ url_for('auth.login', next=request.args.get('next')) }}">
@@ -22,7 +22,7 @@
                             {% for error in form.email.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
-                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                            <div class="invalid-feedback">{{_("Please enter a valid email address.") }}</div>
                         </div>
 
                         <div class="mb-3">
@@ -31,7 +31,7 @@
                             {% for error in form.password.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
-                            <div class="invalid-feedback">Please enter your password.</div>
+                            <div class="invalid-feedback">{{_("Please enter your password.")}}</div>
                         </div>
 
                         <div class="mb-3 form-check">
@@ -39,10 +39,13 @@
                             {{ form.remember.label(class="form-check-label") }}
                         </div>
 
-                        <button type="submit" class="btn btn-primary ">Login</button>
+                        <button type="submit" class="btn btn-primary ">{{ _("Login") }}</button>
                     </form>
                     <div class="card-footer text-center">
-                        Don't have an account? <a href="{{ url_for('auth.register') }}">Register Here</a>
+                        Don't have an account? <a href="{{ url_for('auth.register') }}">{{_("Register Here")}}</a>
+                    </div>
+                    <div class="text-center mt-3">
+                       <a href="{{ url_for('auth.reset_password_request') }}">{{_("Forgot Password?")}}</a>
                     </div>
                 </div>
             </div>

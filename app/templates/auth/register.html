@@ -18,7 +18,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="text-white mb-0">Register</h4>
+                    <h4 class="text-white mb-0">{{_("Register")}}</h4>
                 </div>
                 <div class="card-body">
                     <form id="register-form" method="POST" action="{{ url_for('auth.register') }}" class="needs-validation" novalidate>
@@ -40,7 +40,7 @@
                             {% for error in form.email.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
-                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                            <div class="invalid-feedback">{{_("Please enter a valid email address.")}}</div>
                         </div>
 
                         <div class="mb-3">
@@ -49,7 +49,7 @@
                             {% for error in form.password.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
-                            <div class="invalid-feedback">Password must be at least 8 characters.</div>
+                            <div class="invalid-feedback">{{_("Password must be at least 8 characters") }}.</div>
                         </div>
 
                         <div class="mb-3">
@@ -58,13 +58,13 @@
                             {% for error in form.confirm_password.errors %}
                                 <div class="invalid-feedback d-block">{{ error }}</div>
                             {% endfor %}
-                            <div class="invalid-feedback">Passwords must match.</div>
+                            <div class="invalid-feedback">{{_("Passwords must match") }}.</div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary ">Register</button>
+                        <button type="submit" class="btn btn-primary ">{{_("Register") }}</button>
                     </form>
                     <div class="card-footer text-center">
-                        Already have an account? <a href="{{ url_for('auth.login') }}">Login Here</a>
+                        {{_("Already have an account?") }} <a href="{{ url_for('auth.login') }}">{{_("Login Here")}}</a>
                     </div>
                 </div>
             </div>

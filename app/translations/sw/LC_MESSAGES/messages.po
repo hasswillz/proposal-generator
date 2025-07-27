@@ -1,17 +1,18 @@
-# Translations template for PROJECT.
+# Swahili translations for PROJECT.
 # Copyright (C) 2025 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-27 20:36+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2025-07-27 20:32+0300\n"
+"PO-Revision-Date: 2025-07-27 20:21+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: sw\n"
+"Language-Team: sw <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,202 +20,203 @@ msgstr ""
 
 #: app/forms.py:10
 msgid "Project Name"
-msgstr ""
+msgstr "Jina la Mradi"
 
 #: app/forms.py:11
+#, fuzzy
 msgid "Project Type"
-msgstr ""
+msgstr "Aina ya Mradi"
 
 #: app/forms.py:12
 msgid "Agriculture"
-msgstr ""
+msgstr "Kilimo"
 
 #: app/forms.py:13
 msgid "Livestock"
-msgstr ""
+msgstr "Ufugaji"
 
 #: app/forms.py:14
 msgid "Fishing"
-msgstr ""
+msgstr "Uvuvi"
 
 #: app/forms.py:15
 msgid "Transportation"
-msgstr ""
+msgstr "Usafirishaji"
 
 #: app/forms.py:16
 msgid "Food and Beverage"
-msgstr ""
+msgstr "Chakula na Vinywaji"
 
 #: app/forms.py:17
 msgid "Culture and Arts"
-msgstr ""
+msgstr "Sanaa na Utamaduni"
 
 #: app/forms.py:18
 msgid "Other Business"
-msgstr ""
+msgstr "Biashara"
 
 #: app/forms.py:20
 msgid "Brief Description"
-msgstr ""
+msgstr "Maelezo Mafupi"
 
 #: app/forms.py:21
 msgid "Estimated Budget (Tsh)"
-msgstr ""
+msgstr "Makadirio ya Bajeti (TSh)"
 
 #: app/forms.py:22
 msgid "Estimated Duration (weeks)"
-msgstr ""
+msgstr "Muda wa Mradi (Wiki)"
 
 #: app/forms.py:23
 msgid "Writing Style"
-msgstr ""
+msgstr "Aina ya Aundishi"
 
 #: app/forms.py:24
 msgid "Professional"
-msgstr ""
+msgstr "Kitaalam"
 
 #: app/forms.py:25
 msgid "Concise"
-msgstr ""
+msgstr "Fupi"
 
 #: app/forms.py:26
 msgid "Detailed"
-msgstr ""
+msgstr "Kina"
 
 #: app/forms.py:27
 msgid "Creative"
-msgstr ""
+msgstr "Bunifu"
 
 #: app/forms.py:29
 msgid "Complexity Level"
-msgstr ""
+msgstr "Kiwango"
 
 #: app/forms.py:30
 msgid "Low"
-msgstr ""
+msgstr "Chini"
 
 #: app/forms.py:31
 msgid "Medium"
-msgstr ""
+msgstr "Kati"
 
 #: app/forms.py:32
 msgid "High"
-msgstr ""
+msgstr "Juu"
 
 #: app/forms.py:34
 msgid "Target Audience"
-msgstr ""
+msgstr "Jamii Nufaika"
 
 #: app/forms.py:35
 msgid "Contact Email for Proposal"
-msgstr ""
+msgstr "Baruapepe Binafsi"
 
 #: app/forms.py:36
 msgid "Contact Mobile Number "
-msgstr ""
+msgstr "Namba ya Simu"
 
 #: app/forms.py:37 app/templates/main/form.html:37
 #: app/templates/main/index.html:111
 msgid "Generate Proposal"
-msgstr ""
+msgstr "Tengeneza Pendekezo"
 
 #: app/auth/forms.py:51
 msgid "Email"
-msgstr ""
+msgstr "Baruapepe"
 
 #: app/auth/forms.py:52
 msgid "Request Password Reset"
-msgstr ""
+msgstr "Omba Kubadili Nywila"
 
 #: app/auth/forms.py:55
 msgid "Password"
-msgstr ""
+msgstr "Nywila"
 
 #: app/auth/forms.py:56
 msgid "Repeat Password"
-msgstr ""
+msgstr "Rudia Password"
 
 #: app/auth/forms.py:57 app/templates/main/base.html:64
 msgid "Reset Password"
-msgstr ""
+msgstr "Badili Nywila"
 
 #: app/templates/auth/login.html:12 app/templates/auth/login.html:42
 #: app/templates/main/base.html:69
 msgid "Login"
-msgstr ""
+msgstr "Ingia"
 
 #: app/templates/auth/login.html:25 app/templates/auth/register.html:43
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "Tafadhali weka Baruapepe sahihi "
 
 #: app/templates/auth/login.html:34
 msgid "Please enter your password."
-msgstr ""
+msgstr "Tafadhali weka Nywila"
 
 #: app/templates/auth/login.html:45
 msgid "Register Here"
-msgstr ""
+msgstr "Sajili Hapa"
 
 #: app/templates/auth/login.html:48
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Umesahau Nywila"
 
 #: app/templates/auth/register.html:21 app/templates/auth/register.html:64
 #: app/templates/main/base.html:72
 msgid "Register"
-msgstr ""
+msgstr "Sajili"
 
 #: app/templates/auth/register.html:52
 msgid "Password must be at least 8 characters"
-msgstr ""
+msgstr "Nywila lazima iwe na herufi 8"
 
 #: app/templates/auth/register.html:61
 msgid "Passwords must match"
-msgstr ""
+msgstr "Nywila hazifanani"
 
 #: app/templates/auth/register.html:67
 msgid "Already have an account?"
-msgstr ""
+msgstr "Je una akaunti"
 
 #: app/templates/auth/register.html:67
 msgid "Login Here"
-msgstr ""
+msgstr "Ingia Hapa"
 
 #: app/templates/auth/reset_password.html:9
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Badili Nywila"
 
 #: app/templates/errors/500.html:12
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Tatizo kwenye Seva"
 
 #: app/templates/errors/500.html:13
 msgid "Something went wrong on our end. We're working to fix it."
-msgstr ""
+msgstr "Kuna tatizo, Tafadhali tunalifanyia kazi"
 
 #: app/templates/errors/500.html:15
 msgid "Go Home"
-msgstr ""
+msgstr "Rudi Nyuma"
 
 #: app/templates/main/about.html:13
 msgid "Our Mission"
-msgstr ""
+msgstr "Dhamira Yetu"
 
 #: app/templates/main/base.html:26
 msgid "Home"
-msgstr ""
+msgstr "Nyumbani"
 
 #: app/templates/main/base.html:29 app/templates/main/base.html:60
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashibodi"
 
 #: app/templates/main/base.html:32
 msgid "About"
-msgstr ""
+msgstr "Kuhusu Sisi"
 
 #: app/templates/main/base.html:62
 msgid "Logout"
-msgstr ""
+msgstr "Toka"
 
 #: app/templates/main/base.html:99
 msgid "AI Project Proposal Generator. All rights reserved"
@@ -222,73 +224,73 @@ msgstr ""
 
 #: app/templates/main/dashboard.html:14
 msgid "Total Proposals Generated"
-msgstr ""
+msgstr "Jumla ya Mapendekezo"
 
 #: app/templates/main/dashboard.html:24
 msgid "Your Recent Proposals"
-msgstr ""
+msgstr "Mapendekezo Yako"
 
 #: app/templates/main/dashboard.html:51 app/templates/main/proposal.html:16
 msgid "Download"
-msgstr ""
+msgstr "Pakua"
 
 #: app/templates/main/dashboard.html:65
 msgid "Start generating one now!"
-msgstr ""
+msgstr "Anza Kutengeneza Pendekezo"
 
 #: app/templates/main/index.html:8
 msgid "Generate a New AI Project Proposal"
-msgstr ""
+msgstr "Tengeneza Pendekezo la Mradi kwa AM"
 
 #: app/templates/main/index.html:28
 msgid "Please select a project type"
-msgstr ""
+msgstr "Tafadhali Chagua aina ya Mradi"
 
 #: app/templates/main/index.html:37
 msgid "Please provide a description (at least 20 characters)"
-msgstr ""
+msgstr "Tafadhali toa maelezo mafupi ya Mradi "
 
 #: app/templates/main/index.html:49
 msgid "Please enter a valid budget"
-msgstr ""
+msgstr "Tafadhali weka bujeti"
 
 #: app/templates/main/index.html:59
 msgid "weeks"
-msgstr ""
+msgstr "Wiki"
 
 #: app/templates/main/index.html:60
 msgid "Please enter a valid duration in weeks."
-msgstr ""
+msgstr "Tafadhali weka muda kwa wiki"
 
 #: app/templates/main/index.html:71
 msgid "Please select a writing style."
-msgstr ""
+msgstr "Tafadhali Weka aina ya Uandishi"
 
 #: app/templates/main/index.html:80
 msgid "Please select a complexity level."
-msgstr ""
+msgstr "Tafadhali weka Kiwango"
 
 #: app/templates/main/index.html:89
 msgid "Please specify the target audience."
-msgstr ""
+msgstr "Tafadhali bainisha jamii lengwa "
 
 #: app/templates/main/index.html:106
 msgid "Please enter a valid contact email."
-msgstr ""
+msgstr "Tafadhali weka baruapepe"
 
 #: app/templates/main/proposal.html:36
 msgid "Back to Dashboard"
-msgstr ""
+msgstr "Rudi kwenye Dashibodi"
 
 #: app/templates/main/result.html:10
 msgid "Generated Proposal"
-msgstr ""
+msgstr "Pendekezo Kamilifu"
 
 #: app/templates/main/result.html:20
 msgid "Generate Another Proposal"
-msgstr ""
+msgstr "Tengeneza Pendekezo lingine"
 
 #: app/templates/main/result.html:23
 msgid "Print Proposal"
-msgstr ""
+msgstr "Printi Pendekezo"
 
